@@ -1,0 +1,174 @@
+Best Practises :
+
+required attribute
+<label for="name">Name (required): </label>
+<input type="text" name="name" id="name" required aria-required="true">
+
+HTML5 also provides input types for other data, including email, url, number, range, date, or time
+<div>
+	<label for="email">Email: </label>
+	<input type="email" name="email" id="email">
+</div>
+<div>
+	<label for="url">Website: </label>
+	<input type="url" name="url" id="url">
+</div>
+<div>
+	<label for="number">Number: </label>
+	<input type="number" name="number" id="number" min="0" max="100" step="10" value="0">
+</div>
+<div>
+	<label for="range">Range: </label>
+	<input type="range" name="range" id="range" min="0" max="100" step="10" value="0">
+</div>
+<div>
+	<label for="date">Date: </label>
+	<input type="date" name="date" id="date">
+</div>
+<div>
+	<label for="time">Time: </label>
+	<input type="time" name="time" id="time">
+</div>
+
+REGEX
+<div>
+	<input type="text" id="license"
+		pattern="[A-ZÖÄÜ]{1,3}( )[A-Z]{2,4}( )[0-9]{1,4}"
+	>
+</div>
+CODE SNIPPET: ERROR
+<h1>3 Errors – Billing Address</h1>
+CODE SNIPPET: SUCCESS
+<h1>Thank you for submitting your order.</h1>
+
+CODE SNIPPET: ERROR
+<title>3 Errors – Billing Address</title>
+CODE SNIPPET: SUCCESS
+<title>Thank you for submitting your order.</title>
+EXAMPLE:
+Save
+CODE SNIPPET: HTML
+<button type="button" id="alertconfirm">Save</button>
+CODE SNIPPET: JAVASCRIPT
+document.getElementById('alertconfirm')
+	.addEventListener('click', function() {
+		/* [… code saving data …] */
+		alert('Thanks for submitting the form!');
+	});
+
+Reference the label of the corresponding form control, to help the user recognize the control;
+Number of errors to be displayed
+✓
+*s if needed for rating
+CODE SNIPPET: CSS
+.error   { color: #900; }
+.success { color: #007a00; }
+.error   input { border: 3px solid #900; }
+.success input { border: 3px solid #007a00; }
+Live Testing
+CODE SNIPPET: HTML
+<div>
+	<label for="username">Username:</label>
+	<input type="text" name="username" id="username">
+	<span id="username_feedback" aria-live="polite"></span>
+</div>
+CODE SNIPPET: JAVASCRIPT
+document.getElementById('username').addEventListener('keyup', function(){
+	function setError(el, msg) {
+		el.parentNode.querySelector('strong').innerHTML = "Error:";
+		el.parentNode.className='error';
+		el.parentNode.querySelector('span').innerHTML = msg;
+	}
+	function setSuccess(el) {
+		el.parentNode.querySelector('strong').innerHTML = "OK:";
+		el.parentNode.className='success';
+		el.parentNode.querySelector('span').innerHTML = "&check;";
+	}
+	var val = this.value;
+	if (val !== "") {
+		if (taken_usernames.indexOf(val.trim())+1) {
+			setError(this, '&cross; Sorry, this username is taken.');
+		} else {
+			setSuccess(this, '&check; You can use this username.');
+		}
+	} else {
+		document.getElementById('username_feedback').innerHTML = '';
+		document.getElementById('username_feedback')
+			.parentNode.className = '';
+		document.querySelector('[for="username"] strong').innerHTML = '';
+	}
+});
+
+
+EXAMPLE:
+All fields marked “required” must be completed.
+Dates should all be typed in the format dd/mm/yyyy, (as in 21/07/2013).
+Passwords must contain at least 8 letters and/or numbers.
+Extra help can be found immediately after each field.
+
+<label for="firstname">First name:</label>
+<input type="text" name="firstname" id="firstname"><br>
+
+<input type="checkbox" name="subscribe" id="subscribe">
+<label for="subscribe">Subscribe to newsletter</label>
+
+fieldset
+ > legend
+   > optgroup
+
+optgroup
+
+<select>
+	<optgroup label="8.01 Physics I: Classical Mechanics">
+		<option value="8.01.1">Lecture 01: Powers of Ten</option>
+		<option value="8.01.2">Lecture 02: 1D Kinematics</option>
+		<option value="8.01.3">Lecture 03: Vectors</option>
+	</optgroup>
+	<optgroup label="8.02 Physics II: Electricity and Magnestism">
+		<option value="8.02.1">Lecture 01: What holds our world together?</option>
+		[…]
+	</optgroup>
+	[…]
+</select>
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+Providing Labels to Form Fields
+<label id="expLabel" for="expire" tabindex="-1">Expiration date:</label>
+<span>
+	<input type="text" name="expire" id="expire" aria-labelledby="expLabel expDesc">
+	<span id="expDesc" tabindex="-1">MM/YYYY</span>
+</span>
+
+Placeholder
+::-webkit-input-placeholder {
+	 color: #767676;
+	 opacity: 1;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	 color: #767676;
+	 opacity: 1;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+	 color: #767676;
+	 opacity: 1;
+}
+
+:-ms-input-placeholder {
+	 color: #767676;
+	 opacity: 1;
+}
+
+
+
